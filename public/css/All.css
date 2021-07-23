@@ -1,0 +1,9 @@
+* {
+    font-family: 'Roboto', sans-serif !important;
+}
+.nav-link:hover {
+color: red !important; 
+}
+.form-control {
+    text-transform: uppercase !important;
+}

@@ -1,0 +1,31 @@
+<div class="container my-auto">
+    <div class="mt-3 text-center">
+        <img src="/images/logo/oaustech-logo.jfif" height="100px" width="100px">
+    </div>
+    <div class="my-3 py-3 text-center">
+
+        <h4 class="text-bold"><b>Welcome to OAUSTECH verification page</b></h4>
+
+
+
+        {{#if message}}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>{{message}}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {{/if}}
+    </div>
+    <div>
+    </div>
+    <form method="POST" action="/oaustech">
+        <div class="mb-3">
+            <label for="exampleInputSurname" class="form-label"><b class="text-secondary">Insert Unique Id</b></label>
+            <input type="text" name="uniqueId" class="form-control text-uppercase" id="exampleInputSurname" required>
+        </div>
+        <div class="text-center my-3">
+            <button class="btn btn-danger mx-3" type="submit">Select</button>
+        </div>
+    </form>
+</div>

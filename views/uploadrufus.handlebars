@@ -1,0 +1,22 @@
+<div class="container my-auto">
+    <div class=" mt-4  text-center">
+        <img src="/images/logo/rufus-logo.jfif" height="100px" width="100px">
+    </div>
+    <div class="my-3 py-5 text-center">
+        <h4 class="text-bold"> <b class="text-secondary">Welcome to RUGIPO certificate Upload page</b></h4>
+    </div>
+
+    <form method="POST" action="/admin/uploadrufus" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="exampleInputSurname" class="form-label"><b class="text-muted">Insert Unique Id</b></label>
+            <input type="text" name="uniqueId" class="form-control text-uppercase" id="exampleInputSurname" required>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputSurname" class="form-label">Upload Certificate</label>
+            <input type="file" name="file" class="form-control" id="exampleInputSurname" required>
+        </div>
+        <div class="text-center my-3">
+            <button class="btn btn-danger mx-3" type="submit">Select</button>
+        </div>
+    </form>
+</div>

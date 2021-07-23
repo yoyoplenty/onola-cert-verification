@@ -1,0 +1,33 @@
+<div class="container my-auto">
+
+    <div class="my-3 py-5 text-center">
+        <div class="text-center">
+            <img src="/images/logo/aaua-logo.jpg" height="100px" width="100px">
+        </div>
+        <h4 class="text-bold"><b>Welcome to AAUA verification page</b></h4>
+
+
+        {{#if message}}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>{{message}}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {{/if}}
+
+    </div>
+    <div>
+
+    </div>
+    <form method="POST" action="/adekunle">
+        <div class="mb-3">
+            <label for="exampleInputSurname" class="form-label"><b class="text-secondary">Insert Unique Id</b></label>
+            <input style="text-transform: uppercase" type="text" name="uniqueId" class="form-control text-uppercase"
+                id="exampleInputSurname" required>
+        </div>
+        <div class="text-center my-3">
+            <button class="btn btn-danger mx-3" type="submit">Select</button>
+        </div>
+    </form>
+</div>

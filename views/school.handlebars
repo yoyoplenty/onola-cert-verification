@@ -1,0 +1,38 @@
+<div class="container my-auto">
+
+    <div class=" mt-4 my-3 text-center">
+        <img src="/images/logo/ondo-logo.jpg" height="100px" width="100px">
+    </div>
+    <div class="mb-3 pb-5 text-center">
+        <h4><b>Select Your Preferred Institution</b></h4>
+    </div>
+
+
+
+
+    {{#if message}}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{message}}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {{/if}}
+
+
+    <div>
+        <h3 class="text-secondary"><b>Select Institution</b></h3>
+    </div>
+    <form method="POST" action="/school">
+        <select class="form-control form-control-lg" name="school" class="select">
+            <option value="Select Institution">Select Institution</option>
+            <option value="adekunle">Adekunle Ajasin University</option>
+            <option value="rufus">Rufus Giwa Polytechnic</option>
+            <option value="oaustech">Olusegun Agagu University Of Science And
+                Technology</option>
+        </select>
+        <div class="text-center my-3">
+            <button class="btn btn-danger mx-3" type="submit">Select</button>
+        </div>
+    </form>
+</div>
