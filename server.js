@@ -8,14 +8,27 @@ const mongoose = require("mongoose");
 const flash = require("connect-flash");
 const passport = require("passport");
 const session = require("express-session");
+const dotenv = require('dotenv')
+
+dotenv.config()
 
 //set prototypes for handlebars
 const {
     allowInsecurePrototypeAccess,
 } = require("@handlebars/allow-prototype-access");
 
+mongoose.connect(process.env.DATABASE_ACCESS, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useCreateIndex: true,
+}, () => {
+    console.log('Database connected')
+}
+)
+
+
 //set Database
-mongoose.connect(
+/* mongoose.connect(
     "mongodb://localhost:27017/Cetificateverification",
     {
         useUnifiedTopology: true,
@@ -25,7 +38,7 @@ mongoose.connect(
     () => {
         console.log("Database connected");
     }
-);
+); */
 
 
 //middlewares
@@ -33,6 +46,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
 
 app.use(
+
     session({
         secret: "secret",
         resave: true,
