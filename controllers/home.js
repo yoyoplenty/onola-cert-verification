@@ -1,6 +1,7 @@
 const AauaCert = require('../models/Schools/Aaua')
 const OaustechCert = require('../models/Schools/Oaustech')
 const RufusCert = require('../models/Schools/Rufus')
+const path = require('path')
 
 
 module.exports = {
@@ -51,10 +52,15 @@ module.exports = {
             if (err) {
                 return console.log(err)
             } if (mycertificate) {
+
+
+                console.log(mycertificate)
+                // res.sendFile(path.join(__dirname, '../public', 'images', 'uploads', 'aaua', mycertificate.img));
                 return res.render('getaaua', {
+                    aauacert: mycertificate,
                     title: 'Student certificate',
                     layout: 'admin',
-                    aauacert: mycertificate
+
                 })
             } else {
                 res.render('adekunle', {
@@ -71,6 +77,7 @@ module.exports = {
             if (err) {
                 return console.log(err)
             } if (mycertificate) {
+                // res.sendFile(path.join(__dirname, '../public', 'images', 'uploads', 'oaustech', mycertificate.img));
                 return res.render('getoaustech', {
                     title: 'Student certificate',
                     layout: 'admin',
@@ -91,6 +98,7 @@ module.exports = {
             if (err) {
                 return console.log(err)
             } if (mycertificate) {
+                // res.sendFile(path.join(__dirname, '../public', 'images', 'uploads', 'rufus', mycertificate.img));
                 return res.render('getrufus', {
                     title: 'Student certificate',
                     layout: 'admin',

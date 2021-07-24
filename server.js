@@ -9,6 +9,7 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const session = require("express-session");
 const dotenv = require('dotenv')
+const path = require('path')
 
 dotenv.config()
 
@@ -26,9 +27,9 @@ mongoose.connect(process.env.DATABASE_ACCESS, {
 }
 )
 
-
+/*
 //set Database
-/* mongoose.connect(
+mongoose.connect(
     "mongodb://localhost:27017/Cetificateverification",
     {
         useUnifiedTopology: true,
@@ -44,6 +45,7 @@ mongoose.connect(process.env.DATABASE_ACCESS, {
 //middlewares
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(
 
