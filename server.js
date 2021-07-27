@@ -10,6 +10,8 @@ const passport = require("passport");
 const session = require("express-session");
 const dotenv = require('dotenv')
 const path = require('path')
+//initialize port
+let PORT = process.env.PORT || 8000;
 
 dotenv.config()
 
@@ -41,14 +43,22 @@ mongoose.connect(
     }
 ); */
 
+//view engine
+var hbs = exphbs.create({
+    handlebars: allowInsecurePrototypeAccess(Handlebars),
+});
+app.engine("handlebars", hbs.engine);
+app.set("view engine", "handlebars");
+app.set('views', path.join(__dirname, '/views'));
+
 
 //middlewares
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, 'public')));
 
+//initialize session
 app.use(
-
     session({
         secret: "secret",
         resave: true,
@@ -56,23 +66,27 @@ app.use(
     })
 );
 
+//initialize passport and flash
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 
-
-//view engine
-var hbs = exphbs.create({
-    handlebars: allowInsecurePrototypeAccess(Handlebars),
+//Global variables
+app.use((req, res, next) => {
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    res.locals.err = req.flash("err");
+    next();
 });
-app.engine("handlebars", hbs.engine);
-app.set("view engine", "handlebars");
 
-//initialize port
-let PORT = process.env.PORT || 8000;
+
 
 
 //Routes
-app.use(Homeroutes);
+
 app.use('/admin', Adminroutes);
+app.use(Homeroutes);
 
 //server port
 app.listen(PORT, () => {

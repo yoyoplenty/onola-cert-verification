@@ -4,6 +4,10 @@ const router = express.Router();
 const Admin = require('../controllers/admin')
 const multer = require('multer');
 const path = require('path')
+const passport = require('passport');
+const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
+//passport config
+require('../config/passport')(passport)
 
 const storage = multer.diskStorage({
     destination: function (request, file, callback) {
@@ -59,12 +63,23 @@ const uploadrufus = multer({
 
 //all get request
 router.get('/', Admin.getadminpage);
-router.get('/select', Admin.getadminselectpage);
-router.get('/uploadaaua', Admin.getuploadadekunlepage);
-router.get('/uploadoaustech', Admin.getuploadoaustechpage);
-router.get('/uploadrufus', Admin.getuploadrufuspage);
+router.get('/register', Admin.getadminregisterpage);
+router.get('/dashboard', ensureAuthenticated, Admin.getadmindashboardpage);
+router.get('/login', Admin.getadminloginpage);
+router.get('/select', ensureAuthenticated, Admin.getadminselectpage);
+router.get('/uploadaaua', ensureAuthenticated, Admin.getuploadadekunlepage);
+router.get('/uploadoaustech', ensureAuthenticated, Admin.getuploadoaustechpage);
+router.get('/uploadrufus', ensureAuthenticated, Admin.getuploadrufuspage);
 
 //all post request
+router.post('/register', Admin.postadminregisterpage);
+router.post('/login', (req, res, next) => {
+    passport.authenticate('local', {
+        successRedirect: '/admin/dashboard',
+        failureRedirect: '/admin/login',
+        failureFlash: true
+    })(req, res, next);
+});
 router.post('/select', Admin.postadminselect);
 router.post('/uploadaaua', upload.single('file'), Admin.postuploadaaua)
 router.post('/uploadoaustech', uploadoaustech.single('file'), Admin.postuploadoaustech)
