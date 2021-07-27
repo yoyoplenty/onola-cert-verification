@@ -63,7 +63,7 @@ const uploadrufus = multer({
 
 //all get request
 router.get('/', Admin.getadminpage);
-router.get('/register', Admin.getadminregisterpage);
+//router.get('/register', Admin.getadminregisterpage);
 router.get('/dashboard', ensureAuthenticated, Admin.getadmindashboardpage);
 router.get('/login', Admin.getadminloginpage);
 router.get('/select', ensureAuthenticated, Admin.getadminselectpage);
