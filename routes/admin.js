@@ -5,7 +5,7 @@ const Admin = require('../controllers/admin')
 const multer = require('multer');
 const path = require('path')
 const passport = require('passport');
-const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
+const { ensureAuthenticated, forwardAuthenticated } = require('../config/Auth');
 //passport config
 require('../config/passport')(passport)
 
